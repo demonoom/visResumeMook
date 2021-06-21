@@ -7,6 +7,8 @@ module.exports = {
     alias: {
       // 别名,避免写 import A from '../../../../A'这种路径
       '@src': path.join(__dirname, '../', 'app/renderer'),
+      '@assets': path.join(__dirname, '../', 'assets'),
+      '@common': path.join(__dirname, '../', 'app/renderer/common'),
     },
   },
   module: {
