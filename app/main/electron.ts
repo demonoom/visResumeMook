@@ -1,7 +1,14 @@
 const path = require('path');
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 
 const isDev = () => process.env.NODE_ENV === 'development';
+// 获取当前应用程序在本机中的目录路径，仅能在主进程使用
+const ROOT_PATH = path.join(app.getAppPath(), '../');
+
+// 监听渲染进程发的消息并回复
+ipcMain.on('get-root-path', (event: { reply: (arg0: string, arg1: any) => void }, args: any) => {
+  event.reply('reply-root-path', ROOT_PATH);
+});
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
